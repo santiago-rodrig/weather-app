@@ -1,3 +1,5 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
 @font-face {
   src: url('../fonts/VT323-Regular.ttf');
   font-family: 'VT323';
@@ -26,4 +28,22 @@ body {
 h1 {
   font-family: 'VT323', monospace;
   color: $main-yellow;
+}
+
+img {
+  max-width: 200px !important;
+}
+
+.ajs-message {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.alertify-notifier .ajs-message.ajs-error {
+  background: $danger;
+}
+
+.alertify-notifier .ajs-message.ajs-success {
+  background: $success;
 }

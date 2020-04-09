@@ -1,3 +1,5 @@
+import { getData } from './weather';
+
 export default (() => {
   const form = document.createElement('form');
   const formRow = document.createElement('div');
@@ -5,6 +7,30 @@ export default (() => {
   const searchInput = document.createElement('input');
   const submitButtonCol = document.createElement('div');
   const submitButton = document.createElement('button');
+
+  function searchData(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('search-form');
+    const input = form.querySelector('input');
+    const place = input.value;
+
+    getData(place);
+  }
+
+  function handleEnter(e) {
+    e.preventDefault();
+
+    if (e.code === 'Enter') {
+      const button = document.querySelector('#search-form button');
+
+      button.click();
+    }
+  }
+
+  // Add event listeners
+  form.addEventListener('submit', searchData);
+  // form.addEventListener('keypress', handleEnter);
 
   // Set classes
   form.classList.add('bg-white', 'px-3', 'py-2', 'rounded-top');

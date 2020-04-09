@@ -11,5 +11,4 @@ import { getData } from './weather';
 import centralComponent from './central_component';
 import searchForm from './search_component';
 
-getData('Bogotá,co');
 document.body.append(centralComponent, searchForm);

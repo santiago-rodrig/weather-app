@@ -6,6 +6,7 @@ export default (() => {
 
   heading.classList.add('text-center');
   heading.id = 'weather-main';
+  heading.textContent = '???';
 
   container.append(gif, heading);
 
