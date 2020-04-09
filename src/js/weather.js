@@ -14,8 +14,9 @@ async function curateData(data) {
   const weather = data.weather[0].main;
   const gif = await getGif(data);
   const description = data.weather[0].description;
+  const icon = data.weather[0].icon;
 
-  return { weather, gif, description };
+  return { weather, gif, description, icon };
 }
 
 async function getData(place) {
@@ -24,6 +25,7 @@ async function getData(place) {
   const mainPlace = document.getElementById('place-main');
   const mainWeather = document.getElementById('weather-main');
   const description = document.getElementById('description');
+  const icon = document.createElement('img');
 
   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${api_key}`, { mode: 'cors' })
     .then((response) => {
@@ -34,6 +36,8 @@ async function getData(place) {
           curateData(data).then((curated) => {
             mainPlace.textContent = place;
             mainWeather.textContent = curated.weather;
+            icon.src = `http://openweathermap.org/img/w/${curated.icon}.png`;
+            mainWeather.append(icon);
             description.textContent = curated.description;
             image.src = curated.gif;
           });

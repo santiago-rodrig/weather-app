@@ -1,5 +1,5 @@
-import centralComponent from './central_component';
-import leftComponent from './left_component';
+import overviewComponent from './overview_component';
+import detailsComponent from './details_component';
 
 export default (() => {
   const container = document.createElement('div');
@@ -9,7 +9,7 @@ export default (() => {
   const row = document.createElement('div');
 
   row.classList.add('row');
-  row.append(leftComponent, centralComponent);
+  row.append(overviewComponent, detailsComponent);
 
   container.append(row);
 
