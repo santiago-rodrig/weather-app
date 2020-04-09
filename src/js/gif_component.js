@@ -5,7 +5,7 @@ export default (() => {
   const image = document.createElement('img');
 
   image.src = defaultImage;
-  image.classList.add('img-thumbnail');
+  image.classList.add('img-thumbnail', 'mx-auto', 'd-block');
   container.append(image);
 
   return container;

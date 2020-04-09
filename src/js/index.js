@@ -8,7 +8,7 @@ import 'alertifyjs/build/css/alertify.min.css';
 
 import '../scss/style.scss';
 import { getData } from './weather';
-import centralComponent from './central_component';
+import mainComponent from './main_component';
 import searchForm from './search_component';
 
-document.body.append(centralComponent, searchForm);
+document.body.append(mainComponent, searchForm);
