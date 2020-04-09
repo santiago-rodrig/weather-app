@@ -34,12 +34,17 @@ async function curateData(data) {
   };
 
   const pressure = data.main.pressure;
+  const humidity = data.main.humidity;
 
-  return { weather, description, icon, temperature, pressure };
+  return { weather, description, icon, temperature, pressure, humidity };
 }
 
-function farenheitToCelsius(fahrenheit) {
-  return 5 / 9 * (Number(fahrenheit) - 32);
+function fahrenheitToCelsius(fahrenheit) {
+  return (5 / 9 * (Number(fahrenheit) - 32)).toFixed(2);
+}
+
+function kelvinToFahrenheit(kelvin) {
+  return ((Number(kelvin) - 273.15) * 9 / 5 + 32).toFixed(2);
 }
 
 async function getData(place) {
@@ -68,10 +73,11 @@ async function getData(place) {
           icon.src = `http://openweathermap.org/img/w/${curated.icon}.png`;
           mainWeather.append(icon);
           description.textContent = curated.description;
-          temperatureAvg.textContent = curated.temperature.avg + ' ºF';
-          temperatureMin.textContent = curated.temperature.min + ' ºF';
-          temperatureMax.textContent = curated.temperature.max + ' ºF';
+          temperatureAvg.textContent = kelvinToFahrenheit(curated.temperature.avg) + ' ºF';
+          temperatureMin.textContent = kelvinToFahrenheit(curated.temperature.min) + ' ºF';
+          temperatureMax.textContent = kelvinToFahrenheit(curated.temperature.max) + ' ºF';
           pressure.textContent = curated.pressure + ' hPa';
+          humidity.textContent = curated.humidity + '%';
         });
       });
     } else {
