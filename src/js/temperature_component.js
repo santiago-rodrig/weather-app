@@ -7,7 +7,6 @@ export default (() => {
   const max = document.createElement('li');
 
   heading.textContent = 'Temperature';
-  list.id = 'temperatures';
   avg.innerHTML = '<strong>Average</strong>: <span id="avg">???</span>';
   min.innerHTML = '<strong>Minimum</strong>: <span id="min">???</span>';
   max.innerHTML = '<strong>Maximum</strong>: <span id="max">???</span>';

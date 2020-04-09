@@ -36,7 +36,12 @@ async function curateData(data) {
   const pressure = data.main.pressure;
   const humidity = data.main.humidity;
 
-  return { weather, description, icon, temperature, pressure, humidity };
+  const wind = {
+    speed : data.wind.speed,
+    degrees: data.wind.deg,
+  }
+
+  return { weather, description, icon, temperature, pressure, humidity, wind };
 }
 
 function fahrenheitToCelsius(fahrenheit) {
@@ -58,6 +63,8 @@ async function getData(place) {
   const temperatureMin = document.getElementById('min');
   const temperatureMax = document.getElementById('max');
   const pressure = document.getElementById('pressure');
+  const windSpeed = document.getElementById('speed');
+  const windDegrees = document.getElementById('degrees');
 
   fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${api_key}`,
@@ -78,6 +85,8 @@ async function getData(place) {
           temperatureMax.textContent = kelvinToFahrenheit(curated.temperature.max) + ' ºF';
           pressure.textContent = curated.pressure + ' hPa';
           humidity.textContent = curated.humidity + '%';
+          windSpeed.textContent = curated.wind.speed + ' m/s';
+          windDegrees.textContent = curated.wind.degrees + 'º';
         });
       });
     } else {

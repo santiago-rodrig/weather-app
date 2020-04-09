@@ -2,6 +2,7 @@ import descriptionComponent from './description_component';
 import temperatureComponent from './temperature_component';
 import pressureComponent from './pressure_component';
 import humidityComponent from './humidity_component';
+import windComponent from './wind_component';
 
 export default (() => {
   const column = document.createElement('div');
@@ -12,7 +13,8 @@ export default (() => {
     descriptionComponent,
     temperatureComponent,
     pressureComponent,
-    humidityComponent
+    humidityComponent,
+    windComponent
   );
 
   return column;
