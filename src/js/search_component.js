@@ -28,12 +28,13 @@ export default (() => {
     e.preventDefault();
 
     const form = document.getElementById('search-form');
-    const input = form.querySelector('input');
+    const input = form.querySelector('input[type="text"]');
+    const checkBox = form.querySelector('input[type="checkbox"]');
     const place = input.value;
     const regex = /^([a-zA-Z]+|\s)+,[a-z]{2}/;
 
     if (regex.test(place)) {
-      getData(place);
+      getData(place, checkBox.checked);
     } else {
       alertify.error('Invalid input');
     }
