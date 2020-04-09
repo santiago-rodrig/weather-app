@@ -95,6 +95,13 @@ async function getData(place) {
       mainWeather.textContent = '???';
       description.textContent = '???';
       image.src = defaultImage;
+      temperatureAvg.textContent = '???';
+      temperatureMin.textContent = '???';
+      temperatureMax.textContent = '???';
+      pressure.textContent = '???';
+      humidity.textContent = '???';
+      windSpeed.textContent = '???';
+      windDegrees.textContent = '???';
     }
   }).catch((error) => {
     alertify.error('Failed fetching the data from the server');
@@ -102,6 +109,13 @@ async function getData(place) {
     mainWeather.textContent = '???';
     description.textContent = '???';
     image.src = defaultImage;
+    temperatureAvg.textContent = '???';
+    temperatureMin.textContent = '???';
+    temperatureMax.textContent = '???';
+    pressure.textContent = '???';
+    humidity.textContent = '???';
+    windSpeed.textContent = '???';
+    windDegrees.textContent = '???';
   });
 }
 

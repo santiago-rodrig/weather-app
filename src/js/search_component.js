@@ -1,3 +1,4 @@
+import alertify from 'alertifyjs/build/alertify';
 import { getData } from './weather';
 
 export default (() => {
@@ -14,8 +15,13 @@ export default (() => {
     const form = document.getElementById('search-form');
     const input = form.querySelector('input');
     const place = input.value;
+    const regex = /^([a-zA-Z]+|\s)+,[a-z]{2}/;
 
-    getData(place);
+    if (regex.test(place)) {
+      getData(place);
+    } else {
+      alertify.error('Invalid input');
+    }
   }
 
   function handleEnter(e) {
@@ -47,7 +53,6 @@ export default (() => {
   searchInput.setAttribute('type', 'text');
   searchInput.setAttribute('placeholder', 'London,uk');
   searchInput.setAttribute('required', 'required');
-  searchInput.setAttribute('pattern', '^[A-Z][a-z]+,[a-z]{2}$');
 
   // Set text
   submitButton.innerHTML = '<i class="fas fa-search"></i>';

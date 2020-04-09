@@ -7,6 +7,13 @@
   font-weight: 400;
 }
 
+@font-face {
+  src: url('../fonts/PermanentMarker-Regular.ttf');
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+}
+
 $main-yellow: #FCE205;
 
 body {
@@ -29,6 +36,13 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  color: $light;
+  margin-bottom: 5rem;
 }
 
 h2, h3 {
@@ -63,4 +77,11 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#source-icon {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
 }
