@@ -52,6 +52,33 @@ function kelvinToFahrenheit(kelvin) {
   return ((Number(kelvin) - 273.15) * 9 / 5 + 32).toFixed(2);
 }
 
+function checkValid(data, type=null) {
+  if (!type) {
+    return data ? data : '???';
+  } else {
+    switch (type) {
+      case 'temperature':
+        return data ? kelvinToFahrenheit(data) + ' ºF' : '???';
+        break;
+      case 'pressure':
+        return data ? data + ' hPa' : '???';
+        break;
+      case 'humidity':
+        return data ? data + '%' : '???';
+        break;
+      case 'degrees':
+        return data ? data + 'º' : '???';
+        break;
+      case 'speed':
+        return data ? data + ' m/s' : '???';
+        break;
+      default:
+        return '???';
+        break;
+    }
+  }
+}
+
 async function getData(place) {
   const api_key = '87575f6359049d58f9f54e4a9131f5dc';
   const image = document.querySelector('img');
@@ -80,13 +107,13 @@ async function getData(place) {
           icon.src = `http://openweathermap.org/img/w/${curated.icon}.png`;
           mainWeather.append(icon);
           description.textContent = curated.description;
-          temperatureAvg.textContent = kelvinToFahrenheit(curated.temperature.avg) + ' ºF';
-          temperatureMin.textContent = kelvinToFahrenheit(curated.temperature.min) + ' ºF';
-          temperatureMax.textContent = kelvinToFahrenheit(curated.temperature.max) + ' ºF';
-          pressure.textContent = curated.pressure + ' hPa';
-          humidity.textContent = curated.humidity + '%';
-          windSpeed.textContent = curated.wind.speed + ' m/s';
-          windDegrees.textContent = curated.wind.degrees + 'º';
+          temperatureAvg.textContent = checkValid(curated.temperature.avg, 'temperature');
+          temperatureMin.textContent = checkValid(curated.temperature.min, 'temperature');
+          temperatureMax.textContent = checkValid(curated.temperature.max, 'temperature');
+          pressure.textContent = checkValid(curated.pressure, 'pressure');
+          humidity.textContent = checkValid(curated.humidity, 'humidity');
+          windSpeed.textContent = checkValid(curated.wind.speed, 'speed');
+          windDegrees.textContent = checkValid(curate.wind.degreesi, 'degrees');
         });
       });
     } else {
