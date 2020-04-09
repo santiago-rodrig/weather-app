@@ -1,23 +1,29 @@
 import defaultImage from '../images/default.png';
 import alertify from 'alertifyjs/build/alertify';
 import 'alertifyjs/build/css/alertify.min.css';
+import loadingGif from '../images/loading.gif';
 
 async function getGif(data) {
   const apiKey = 'QSBvewk9ZukYxP00X1KG3XKc2V68uWcG';
+  const image = document.getElementById('main-gif');
 
-  const response = await fetch(
+  image.src = loadingGif;
+
+  fetch(
     `http://api.giphy.com/v1/gifs/translate?s=${data}&api_key=${apiKey}`,
     { mode: 'cors' }
-  );
-
-  const gifData = await response.json();
-
-  return gifData.data.images.fixed_width.url;
+  ).then((response) => {
+    response.json().then((gifData) => {
+      image.src = gifData.data.images.fixed_width.url;
+    });
+  }).catch((error) => {
+    alertify.error('Failed to fetch the gif from the server');
+    image.src = defaultImage;
+  });
 }
 
 async function curateData(data) {
   const weather = data.weather[0].main;
-  const gif = await getGif(weather.toLowerCase());
   const description = data.weather[0].description;
   const icon = data.weather[0].icon;
 
@@ -27,7 +33,7 @@ async function curateData(data) {
     max: data.main.temp_max,
   };
 
-  return { weather, gif, description, icon, temperature };
+  return { weather, description, icon, temperature };
 }
 
 function farenheitToCelsius(fahrenheit) {
@@ -50,19 +56,18 @@ async function getData(place) {
     { mode: 'cors' }
   ).then((response) => {
     if (response.ok) {
-      alertify.success(`${place} fetched!`);
-
       response.json().then((data) => {
         curateData(data).then((curated) => {
+          alertify.success(`${place} fetched!`);
           mainPlace.textContent = place;
           mainWeather.textContent = curated.weather;
+          getGif(curated.weather);
           icon.src = `http://openweathermap.org/img/w/${curated.icon}.png`;
           mainWeather.append(icon);
           description.textContent = curated.description;
           temperatureAvg.textContent = curated.temperature.avg + ' ºF';
           temperatureMin.textContent = curated.temperature.min + ' ºF';
           temperatureMax.textContent = curated.temperature.max + ' ºF';
-          image.src = curated.gif;
         });
       });
     } else {
