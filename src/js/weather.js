@@ -33,7 +33,9 @@ async function curateData(data) {
     max: data.main.temp_max,
   };
 
-  return { weather, description, icon, temperature };
+  const pressure = data.main.pressure;
+
+  return { weather, description, icon, temperature, pressure };
 }
 
 function farenheitToCelsius(fahrenheit) {
@@ -50,6 +52,7 @@ async function getData(place) {
   const temperatureAvg = document.getElementById('avg');
   const temperatureMin = document.getElementById('min');
   const temperatureMax = document.getElementById('max');
+  const pressure = document.getElementById('pressure');
 
   fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${api_key}`,
@@ -68,6 +71,7 @@ async function getData(place) {
           temperatureAvg.textContent = curated.temperature.avg + ' ºF';
           temperatureMin.textContent = curated.temperature.min + ' ºF';
           temperatureMax.textContent = curated.temperature.max + ' ºF';
+          pressure.textContent = curated.pressure + ' hPa';
         });
       });
     } else {

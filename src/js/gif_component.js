@@ -5,9 +5,12 @@ export default (() => {
   const image = document.createElement('img');
 
   image.src = defaultImage;
-  image.classList.add('img-thumbnail', 'mx-auto', 'd-block');
+  image.classList.add('img-fluid');
   image.id = 'main-gif';
+  container.id = 'main-gif-container';
   container.append(image);
+  container.classList.add('mx-auto', 'rounded', 'p-2', 'bg-light');
+  container.style.width = '200px';
 
   return container;
 })();

@@ -12,10 +12,15 @@ $main-yellow: #FCE205;
 body {
   background-color: #333;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  @media (min-width: 992px) {
-    padding-top: 10rem;
-  }
+#main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #search-form {
@@ -32,10 +37,6 @@ h2, h3 {
 
 p {
   color: white;
-}
-
-img {
-  max-width: 200px !important;
 }
 
 .ajs-message {
@@ -55,4 +56,10 @@ img {
 #temperatures {
   color: white;
   padding-left: 1.2rem;
+}
+
+#main-gif-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
