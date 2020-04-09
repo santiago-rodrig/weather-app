@@ -8,6 +8,21 @@ export default (() => {
   const searchInput = document.createElement('input');
   const submitButtonCol = document.createElement('div');
   const submitButton = document.createElement('button');
+  const temperatureModeBox = document.createElement('div');
+  const temperatureModeInput = document.createElement('input');
+  const temperatureModeLabel = document.createElement('label');
+  const temperatureModeCol = document.createElement('div');
+
+  temperatureModeCol.classList.add('col-12', 'mt-3');
+  temperatureModeBox.classList.add('custom-control', 'custom-switch');
+  temperatureModeInput.classList.add('custom-control-input');
+  temperatureModeInput.setAttribute('type', 'checkbox');
+  temperatureModeInput.id = 'temperature-mode';
+  temperatureModeLabel.classList.add('custom-control-label');
+  temperatureModeLabel.setAttribute('for', 'temperature-mode');
+  temperatureModeLabel.textContent = 'Use imperial units?';
+  temperatureModeBox.append(temperatureModeInput, temperatureModeLabel);
+  temperatureModeCol.append(temperatureModeBox);
 
   function searchData(e) {
     e.preventDefault();
@@ -39,7 +54,7 @@ export default (() => {
   // form.addEventListener('keypress', handleEnter);
 
   // Set classes
-  form.classList.add('bg-white', 'px-3', 'py-2', 'rounded-top');
+  form.classList.add('bg-white', 'px-3', 'py-3');
   formRow.classList.add('form-row');
   searchInputCol.classList.add('col-10');
   searchInput.classList.add('form-control');
@@ -60,7 +75,7 @@ export default (() => {
   // Append elements
   submitButtonCol.append(submitButton);
   searchInputCol.append(searchInput);
-  formRow.append(searchInputCol, submitButtonCol)
+  formRow.append(searchInputCol, submitButtonCol, temperatureModeCol);
   form.append(formRow);
 
   return form;

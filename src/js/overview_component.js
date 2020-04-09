@@ -11,7 +11,7 @@ export default (() => {
   weather.classList.add('text-center');
   weather.id = 'weather-main';
   weather.textContent = '???';
-  container.classList.add('col-12', 'col-md-6');
+  container.classList.add('col-12', 'col-sm-6');
 
   container.append(place, gif, weather);
 

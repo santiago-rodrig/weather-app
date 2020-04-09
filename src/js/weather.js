@@ -113,7 +113,7 @@ async function getData(place) {
           pressure.textContent = checkValid(curated.pressure, 'pressure');
           humidity.textContent = checkValid(curated.humidity, 'humidity');
           windSpeed.textContent = checkValid(curated.wind.speed, 'speed');
-          windDegrees.textContent = checkValid(curate.wind.degreesi, 'degrees');
+          windDegrees.textContent = checkValid(curated.wind.degrees, 'degrees');
         });
       });
     } else {

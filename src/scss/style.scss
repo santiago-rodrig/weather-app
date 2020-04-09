@@ -34,15 +34,23 @@ body {
 #search-form {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+  }
 }
 
 h1 {
   font-family: 'Permanent Marker', cursive;
   text-align: center;
   color: $light;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
 }
 
 h2, h3 {
@@ -80,8 +88,8 @@ ul {
 }
 
 #source-icon {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
   font-size: 2rem;
+  color: #32FF6A !important;
+  font-family: monospace;
+  text-decoration: underline;
 }
