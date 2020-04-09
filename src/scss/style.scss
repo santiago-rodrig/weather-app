@@ -1,0 +1,29 @@
+@font-face {
+  src: url('../fonts/VT323-Regular.ttf');
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+}
+
+$main-yellow: #FCE205;
+
+body {
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#search-form {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+h1 {
+  font-family: 'VT323', monospace;
+  color: $main-yellow;
+}

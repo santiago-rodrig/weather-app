@@ -30,6 +30,8 @@ module.exports = {
         developerURL: null,
         background: '#ddd',
         theme_color: '#333',
+        icons: {
+          coast: false,
           yandex: false,
         },
       },
