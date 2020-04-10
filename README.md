@@ -1,6 +1,8 @@
 ﻿# weather-app
 This JavaScript application makes use of promises (ES6) and async/await (ES8) features of the language. This application fetches data from a weather API and displays it to the user (also fetches gifs from giphy).
+
 ![application demo](./doc/demo.gif)
+
 ## Features
 ### General
 - Searching of weather data for several locations
