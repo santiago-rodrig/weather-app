@@ -1,5 +1,5 @@
-import defaultImage from '../images/default.png';
 import alertify from 'alertifyjs/build/alertify';
+import defaultImage from '../images/default.png';
 import 'alertifyjs/build/css/alertify.min.css';
 import loadingGif from '../images/loading.gif';
 
@@ -11,12 +11,12 @@ async function getGif(data) {
 
   fetch(
     `http://api.giphy.com/v1/gifs/translate?s=${data}&api_key=${apiKey}`,
-    { mode: 'cors' }
+    { mode: 'cors' },
   ).then((response) => {
     response.json().then((gifData) => {
       image.src = gifData.data.images.fixed_width.url;
     });
-  }).catch((error) => {
+  }).catch(() => {
     alertify.error('Failed to fetch the gif from the server');
     image.src = defaultImage;
   });
@@ -24,8 +24,8 @@ async function getGif(data) {
 
 async function curateData(data) {
   const weather = data.weather[0].main;
-  const description = data.weather[0].description;
-  const icon = data.weather[0].icon;
+  const { description } = data.weather[0];
+  const { icon } = data.weather[0];
 
   const temperature = {
     avg: data.main.temp,
@@ -33,69 +33,59 @@ async function curateData(data) {
     max: data.main.temp_max,
   };
 
-  const pressure = data.main.pressure;
-  const humidity = data.main.humidity;
+  const { pressure } = data.main;
+  const { humidity } = data.main;
 
   const wind = {
-    speed : data.wind.speed,
+    speed: data.wind.speed,
     degrees: data.wind.deg,
-  }
+  };
 
   const clouds = data.clouds.all;
 
-  return { weather, description, icon, temperature, pressure, humidity, wind, clouds };
+  return {
+    weather, description, icon, temperature, pressure, humidity, wind, clouds,
+  };
 }
 
 function checkValid(data, type, imperial) {
   if (!imperial) {
     switch (type) {
       case 'temperature':
-        return data ? data + ' ºC' : '???';
-        break;
+        return data ? `${data} ºC` : '???';
       case 'pressure':
-        return data ? data + ' hPa' : '???';
-        break;
+        return data ? `${data} hPa` : '???';
       case 'humidity':
       case 'cloudiness':
-        return data ? data + '%' : '???';
-        break;
+        return data ? `${data}%` : '???';
       case 'degrees':
-        return data ? data + 'º' : '???';
-        break;
+        return data ? `${data}º` : '???';
       case 'speed':
-        return data ? data + ' meter/sec' : '???';
-        break;
+        return data ? `${data} meter/sec` : '???';
       default:
         return '???';
-        break;
     }
   } else {
     switch (type) {
       case 'temperature':
-        return data ? data + ' ºF' : '???';
-        break;
+        return data ? `${data} ºF` : '???';
       case 'pressure':
-        return data ? data + ' hPa' : '???';
-        break;
+        return data ? `${data} hPa` : '???';
       case 'humidity':
       case 'cloudiness':
-        return data ? data + '%' : '???';
-        break;
+        return data ? `${data}%` : '???';
       case 'degrees':
-        return data ? data + 'º' : '???';
-        break;
+        return data ? `${data}º` : '???';
       case 'speed':
-        return data ? data + ' miles/hour' : '???';
-        break;
+        return data ? `${data} miles/hour` : '???';
       default:
         return '???';
-        break;
     }
   }
 }
 
 async function getData(place, imperial) {
-  const api_key = '87575f6359049d58f9f54e4a9131f5dc';
+  const apiKey = '87575f6359049d58f9f54e4a9131f5dc';
   const image = document.querySelector('img');
   const mainPlace = document.getElementById('place-main');
   const mainWeather = document.getElementById('weather-main');
@@ -105,14 +95,15 @@ async function getData(place, imperial) {
   const temperatureMin = document.getElementById('min');
   const temperatureMax = document.getElementById('max');
   const pressure = document.getElementById('pressure');
+  const humidity = document.getElementById('humidity');
   const windSpeed = document.getElementById('speed');
   const windDegrees = document.getElementById('degrees');
   const clouds = document.getElementById('clouds');
   const mode = imperial ? 'imperial' : 'metric';
 
   fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${place}&units=${mode}&appid=${api_key}`,
-    { mode: 'cors' }
+    `http://api.openweathermap.org/data/2.5/weather?q=${place}&units=${mode}&appid=${apiKey}`,
+    { mode: 'cors' },
   ).then((response) => {
     if (response.ok) {
       response.json().then((data) => {
@@ -148,7 +139,7 @@ async function getData(place, imperial) {
       windSpeed.textContent = '???';
       windDegrees.textContent = '???';
     }
-  }).catch((error) => {
+  }).catch(() => {
     alertify.error('Failed fetching the data from the server');
     mainPlace.textContent = '???';
     mainWeather.textContent = '???';
@@ -164,4 +155,4 @@ async function getData(place, imperial) {
   });
 }
 
-export { getData };
+export default getData;

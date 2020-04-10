@@ -3,7 +3,7 @@ import temperatureComponent from './temperature_component';
 import pressureComponent from './pressure_component';
 import humidityComponent from './humidity_component';
 import windComponent from './wind_component';
-import cloudsComponent from './clouds_component'
+import cloudsComponent from './clouds_component';
 
 export default (() => {
   const column = document.createElement('div');
@@ -16,7 +16,7 @@ export default (() => {
     pressureComponent,
     humidityComponent,
     windComponent,
-    cloudsComponent
+    cloudsComponent,
   );
 
   return column;

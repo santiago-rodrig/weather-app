@@ -1,5 +1,5 @@
 import alertify from 'alertifyjs/build/alertify';
-import { getData } from './weather';
+import getData from './weather';
 
 export default (() => {
   const form = document.createElement('form');
@@ -40,19 +40,8 @@ export default (() => {
     }
   }
 
-  function handleEnter(e) {
-    e.preventDefault();
-
-    if (e.code === 'Enter') {
-      const button = document.querySelector('#search-form button');
-
-      button.click();
-    }
-  }
-
   // Add event listeners
   form.addEventListener('submit', searchData);
-  // form.addEventListener('keypress', handleEnter);
 
   // Set classes
   form.classList.add('bg-white', 'px-3', 'py-3');

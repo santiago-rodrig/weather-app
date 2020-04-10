@@ -7,12 +7,11 @@ import 'alertifyjs/build/css/alertify.min.css';
 /* eslint-enable import/no-unresolved */
 
 import '../scss/style.scss';
-import { getData } from './weather';
 import mainComponent from './main_component';
 import searchForm from './search_component';
 import headingComponent from './heading_component';
 import sourceLinkComponent from './see_source_component';
 
 document.body.append(
-  headingComponent, mainComponent, searchForm, sourceLinkComponent
+  headingComponent, mainComponent, searchForm, sourceLinkComponent,
 );
