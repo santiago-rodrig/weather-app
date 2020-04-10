@@ -59,8 +59,8 @@ export default (() => {
   formRow.classList.add('form-row');
   searchInputCol.classList.add('col-10');
   searchInput.classList.add('form-control');
-  submitButtonCol.classList.add('col-2');
-  submitButton.classList.add('btn', 'btn-primary');
+  submitButtonCol.classList.add('col');
+  submitButton.classList.add('btn', 'btn-primary', 'mx-auto', 'd-block');
 
   // Set ids
   form.id = 'search-form';
