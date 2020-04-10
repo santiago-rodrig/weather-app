@@ -41,36 +41,51 @@ async function curateData(data) {
     degrees: data.wind.deg,
   }
 
-  return { weather, description, icon, temperature, pressure, humidity, wind };
+  const clouds = data.clouds.all;
+
+  return { weather, description, icon, temperature, pressure, humidity, wind, clouds };
 }
 
-function fahrenheitToCelsius(fahrenheit) {
-  return (5 / 9 * (Number(fahrenheit) - 32)).toFixed(2);
-}
-
-function kelvinToFahrenheit(kelvin) {
-  return ((Number(kelvin) - 273.15) * 9 / 5 + 32).toFixed(2);
-}
-
-function checkValid(data, type=null) {
-  if (!type) {
-    return data ? data : '???';
-  } else {
+function checkValid(data, type, imperial) {
+  if (!imperial) {
     switch (type) {
       case 'temperature':
-        return data ? kelvinToFahrenheit(data) + ' ºF' : '???';
+        return data ? data + ' ºC' : '???';
         break;
       case 'pressure':
         return data ? data + ' hPa' : '???';
         break;
       case 'humidity':
+      case 'cloudiness':
         return data ? data + '%' : '???';
         break;
       case 'degrees':
         return data ? data + 'º' : '???';
         break;
       case 'speed':
-        return data ? data + ' m/s' : '???';
+        return data ? data + ' meter/sec' : '???';
+        break;
+      default:
+        return '???';
+        break;
+    }
+  } else {
+    switch (type) {
+      case 'temperature':
+        return data ? data + ' ºF' : '???';
+        break;
+      case 'pressure':
+        return data ? data + ' hPa' : '???';
+        break;
+      case 'humidity':
+      case 'cloudiness':
+        return data ? data + '%' : '???';
+        break;
+      case 'degrees':
+        return data ? data + 'º' : '???';
+        break;
+      case 'speed':
+        return data ? data + ' miles/hour' : '???';
         break;
       default:
         return '???';
@@ -79,7 +94,7 @@ function checkValid(data, type=null) {
   }
 }
 
-async function getData(place) {
+async function getData(place, imperial) {
   const api_key = '87575f6359049d58f9f54e4a9131f5dc';
   const image = document.querySelector('img');
   const mainPlace = document.getElementById('place-main');
@@ -92,9 +107,11 @@ async function getData(place) {
   const pressure = document.getElementById('pressure');
   const windSpeed = document.getElementById('speed');
   const windDegrees = document.getElementById('degrees');
+  const clouds = document.getElementById('clouds');
+  const mode = imperial ? 'imperial' : 'metric';
 
   fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${api_key}`,
+    `http://api.openweathermap.org/data/2.5/weather?q=${place}&units=${mode}&appid=${api_key}`,
     { mode: 'cors' }
   ).then((response) => {
     if (response.ok) {
@@ -107,13 +124,14 @@ async function getData(place) {
           icon.src = `http://openweathermap.org/img/w/${curated.icon}.png`;
           mainWeather.append(icon);
           description.textContent = curated.description;
-          temperatureAvg.textContent = checkValid(curated.temperature.avg, 'temperature');
-          temperatureMin.textContent = checkValid(curated.temperature.min, 'temperature');
-          temperatureMax.textContent = checkValid(curated.temperature.max, 'temperature');
-          pressure.textContent = checkValid(curated.pressure, 'pressure');
-          humidity.textContent = checkValid(curated.humidity, 'humidity');
-          windSpeed.textContent = checkValid(curated.wind.speed, 'speed');
-          windDegrees.textContent = checkValid(curated.wind.degrees, 'degrees');
+          temperatureAvg.textContent = checkValid(curated.temperature.avg, 'temperature', imperial);
+          temperatureMin.textContent = checkValid(curated.temperature.min, 'temperature', imperial);
+          temperatureMax.textContent = checkValid(curated.temperature.max, 'temperature', imperial);
+          pressure.textContent = checkValid(curated.pressure, 'pressure', imperial);
+          humidity.textContent = checkValid(curated.humidity, 'humidity', imperial);
+          windSpeed.textContent = checkValid(curated.wind.speed, 'speed', imperial);
+          windDegrees.textContent = checkValid(curated.wind.degrees, 'degrees', imperial);
+          clouds.textContent = checkValid(curated.clouds, 'cloudiness', imperial);
         });
       });
     } else {
