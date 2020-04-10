@@ -1,6 +1,8 @@
+/* eslint-disable import/no-unresolved */
 import alertify from 'alertifyjs/build/alertify';
-import defaultImage from '../images/default.png';
 import 'alertifyjs/build/css/alertify.min.css';
+/* eslint-enable import/no-unresolved */
+import defaultImage from '../images/default.png';
 import loadingGif from '../images/loading.gif';
 
 async function getGif(data) {

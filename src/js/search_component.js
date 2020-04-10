@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import alertify from 'alertifyjs/build/alertify';
+/* eslint-enable import/no-unresolved */
 import getData from './weather';
 
 export default (() => {
