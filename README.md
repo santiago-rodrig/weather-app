@@ -1,5 +1,5 @@
 ﻿# weather-app
-This JavaScript application makes use of promises (ES6) and async/await (ES8) features of the language. This application fetches data from a weather API and displays it to the user (also fetches gifs from giphy).
+This JavaScript application makes use of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (ES6) and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) (ES8) features of the language. This application fetches data from a [weather API](https://openweathermap.org/) and displays it to the user (also fetches gifs from [giphy](https://developers.giphy.com/)).
 
 ![application demo](./doc/demo.gif)
 
