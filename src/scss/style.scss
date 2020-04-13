@@ -1,0 +1,95 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+@font-face {
+  src: url('../fonts/VT323-Regular.ttf');
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('../fonts/PermanentMarker-Regular.ttf');
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+}
+
+$main-yellow: #FCE205;
+
+body {
+  background-color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 5rem;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#search-form {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+  }
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  color: $light;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
+}
+
+h2, h3 {
+  font-family: 'VT323', monospace;
+  color: $main-yellow;
+}
+
+p {
+  color: white;
+}
+
+.ajs-message {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.alertify-notifier .ajs-message.ajs-error {
+  background: $danger;
+}
+
+.alertify-notifier .ajs-message.ajs-success {
+  background: $success;
+}
+
+ul {
+  color: white;
+  padding-left: 1.2rem;
+}
+
+#main-gif-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#source-icon {
+  font-size: 2rem;
+  color: #32FF6A !important;
+  font-family: monospace;
+  text-decoration: underline;
+}
