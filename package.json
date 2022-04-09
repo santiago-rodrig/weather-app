@@ -44,7 +44,7 @@
     "alertifyjs": "^1.13.1",
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.13.1",
     "papaparse": "^5.2.0",
     "popper.js": "^1.16.1",
